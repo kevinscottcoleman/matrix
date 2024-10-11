@@ -156,6 +156,12 @@ database:
     cp_min: 5
     cp_max: 10
 
+report_stats: False
+
+logging:
+  - module: synapse.storage.SQL
+    level: INFO
+
 use_x_forwarded: true
 bind_addresses: ['127.0.0.1']
 ```
