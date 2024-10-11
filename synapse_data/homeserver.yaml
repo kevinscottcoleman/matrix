@@ -6,10 +6,10 @@ listeners:
     resources:
       - names: [client, federation]
 
-  - port: 8009
-    type: http
-    resources:
-      - names: [sliding_sync]
+  # - port: 8009
+  #   type: http
+  #   resources:
+  #     - names: [sliding_sync]
 
 database:
   name: psycopg2
