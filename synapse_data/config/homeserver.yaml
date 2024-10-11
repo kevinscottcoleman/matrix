@@ -14,3 +14,13 @@ logging:
 
 use_x_forwarded: true
 bind_addresses: ['127.0.0.1']
+
+trusted_key_servers:
+  - server_name: "matrix.org"
+suppress_key_server_warning: true
+
+enable_registration: false
+password_config:
+  enabled: false
+
+admin_contact: 'mailto:it@attraktor.org'

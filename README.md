@@ -237,3 +237,15 @@ directory_name_encryption = true
 ---
 
 These instructions guide you through setting up a full Matrix Synapse server with Sliding Sync and backups, ensuring robust, secure, and flexible deployment. Adjust configurations as needed to fit your exact deployment scenario and requirements. Good luck with your setup! 👍
+
+
+
+
+
+Since i didnt keep this up to date, here are some references:
+
+OIDC / SSO:
+https://element-hq.github.io/matrix-authentication-service/setup/homeserver.html
+
+Sliding Sync:
+https://github.com/matrix-org/sliding-sync/blob/main/README.md

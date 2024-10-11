@@ -1,2 +1,7 @@
 .env
-./synapse_data/config/db.yaml
+synapse_data/config/db.yaml
+synapse_data/config/oidc.yaml
+synapse_data/config/email.yaml
+synapse_data/config/*.signing.key
+pg_synapse_data
+pg_sliding_sync_data

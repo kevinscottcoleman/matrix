@@ -1,0 +1,8 @@
+email:
+  smtp_host: "your.email.server"
+  smtp_port: 587
+  smtp_user: "your-email@address.com"
+  smtp_pass: "your-email-password"
+  require_transport_security: true
+  notif_from: "your-from-address@address.com"
+  app_name: "Attraktor Matrix"
