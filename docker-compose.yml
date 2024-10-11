@@ -42,15 +42,6 @@ services:
       - postgres
     ports:
       - "8008:8008"
-    command: >
-      bash -c 'if [ ! -f /data/homeserver.yaml ]; then
-                  python3 -m synapse.app.homeserver \
-                    --server-name matrix.cloud.attraktor.org \
-                    --config-path /data/homeserver.yaml \
-                    --generate-config \
-                    --report-stats=no; fi && \
-                python3 -m synapse.app.homeserver \
-                --config-path /data/homeserver.yaml'
 
   # sliding_sync:
   #   image: ghcr.io/matrix-org/sliding-sync:latest
