@@ -24,6 +24,7 @@ services:
       SYNAPSE_CONFIG_PATH: /data/homeserver.yaml
     volumes:
       - ./synapse_data:/data
+      - ./synapse_media:/media_store
     depends_on:
       - postgres
     ports:
