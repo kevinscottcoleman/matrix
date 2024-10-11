@@ -1,2 +1,2 @@
 .env
-./synapse_data/db.yaml
+./synapse_data/config/db.yaml
