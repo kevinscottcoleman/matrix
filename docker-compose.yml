@@ -1,0 +1,96 @@
+version: '3.8'
+
+networks:
+  internal_net:
+    driver: bridge
+
+volumes:
+  pg_data:
+    driver: local
+  synapse_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+  backup_data:
+    driver: local
+  sliding_sync_data:
+    driver: local
+  rclone:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:15
+    networks:
+      - internal_net
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+
+  synapse:
+    image: matrixdotorg/synapse:latest
+    networks:
+      - internal_net
+    environment:
+      SYNAPSE_CONFIG_PATH: /data/homeserver.yaml
+    volumes:
+      - ./synapse_data:/data
+    depends_on:
+      - postgres
+    ports:
+      - "8008:8008"
+    command: >
+      bash -c 'if [ ! -f /data/homeserver.yaml ]; then
+                  python3 -m synapse.app.homeserver \
+                    --server-name matrix.cloud.attraktor.org \
+                    --config-path /data/homeserver.yaml \
+                    --generate-config \
+                    --report-stats=no; fi && \
+                python3 -m synapse.app.homeserver \
+                --config-path /data/homeserver.yaml'
+
+  sliding_sync:
+    image: matrixdotorg/sliding-sync:latest
+    networks:
+      - internal_net
+    depends_on:
+      - synapse
+    ports:
+      - "8009:8009"
+    environment:
+      - SLIDING_SYNC_SERVER_NAME=matrix.cloud.attraktor.org
+    volumes:
+      - ./sliding_sync_data:/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - internal_net
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+
+  backup:
+    image: rclone/rclone:latest
+    networks:
+      - internal_net
+    volumes:
+      - ./backup_data:/backup
+      - ./pg_data:/pg_data:ro
+      - ./synapse_data:/synapse_data:ro
+      - ./rclone:/config/rclone
+    environment:
+      AWS_ACCESS_KEY_ID: your_aws_access_key_id
+      AWS_SECRET_ACCESS_KEY: your_aws_secret_access_key
+    entrypoint: /bin/sh -c
+    command: >
+      apk add --no-cache bash coreutils && \
+      echo '0 2 * * * /backup/backup.sh' | crontab - && \
+      crond -f

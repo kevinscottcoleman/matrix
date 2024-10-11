@@ -1,0 +1,26 @@
+server_name: matrix.cloud.attraktor.org
+
+listeners:
+  - port: 8008
+    type: http
+    resources:
+      - names: [client, federation]
+
+  - port: 8009
+    type: http
+    resources:
+      - names: [sliding_sync]
+
+database:
+  name: psycopg2
+  args:
+    user: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    database: ${POSTGRES_DB}
+    host: postgres
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+
+use_x_forwarded: true
+bind_addresses: ['127.0.0.1']
