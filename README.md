@@ -81,7 +81,7 @@ services:
                 --config-path /data/homeserver.yaml'
 
   sliding_sync:
-    image: matrixdotorg/sliding-sync:latest
+    image: ghcr.io/matrix-org/sliding-sync:latest
     networks:
       - internal_net
     depends_on:

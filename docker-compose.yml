@@ -31,7 +31,7 @@ services:
       - ./pg_data:/var/lib/postgresql/data
 
   synapse:
-    image: matrixdotorg/synapse:latest
+    image: ghcr.io/matrix-org/sliding-sync:latest
     networks:
       - internal_net
     environment:
