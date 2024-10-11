@@ -20,8 +20,8 @@ services:
     image: matrixdotorg/synapse:latest
     networks:
       - internal_net
-    environment:
-      SYNAPSE_CONFIG_PATH: /data/homeserver.yaml
+    #environment:
+    #  SYNAPSE_CONFIG_PATH: /data/homeserver.yaml
     volumes:
       - ./synapse_data:/data
       - ./synapse_media:/media_store
