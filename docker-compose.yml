@@ -21,7 +21,7 @@ services:
     networks:
       - internal_net
     environment:
-      SYNAPSE_CONFIG_PATH: /data/config/homeserver.yaml
+      SYNAPSE_CONFIG_PATH: /data/config
     volumes:
       - ./synapse_data:/data
       - ./synapse_media:/media_store
@@ -29,7 +29,6 @@ services:
       - postgres
     ports:
       - "8008:8008"
-    command: run --config-directory=/data/config/homeserver.yaml
 
   # sliding_sync:
   #   image: ghcr.io/matrix-org/sliding-sync:latest
