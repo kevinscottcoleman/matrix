@@ -4,20 +4,6 @@ networks:
   internal_net:
     driver: bridge
 
-volumes:
-  pg_data:
-    driver: local
-  synapse_data:
-    driver: local
-  pgadmin_data:
-    driver: local
-  backup_data:
-    driver: local
-  sliding_sync_data:
-    driver: local
-  rclone:
-    driver: local
-
 services:
   postgres:
     image: postgres:15
