@@ -52,18 +52,18 @@ services:
                 python3 -m synapse.app.homeserver \
                 --config-path /data/homeserver.yaml'
 
-  sliding_sync:
-    image: matrixdotorg/sliding-sync:latest
-    networks:
-      - internal_net
-    depends_on:
-      - synapse
-    ports:
-      - "8009:8009"
-    environment:
-      - SLIDING_SYNC_SERVER_NAME=matrix.cloud.attraktor.org
-    volumes:
-      - ./sliding_sync_data:/data
+  # sliding_sync:
+  #   image: matrixdotorg/sliding-sync:latest
+  #   networks:
+  #     - internal_net
+  #   depends_on:
+  #     - synapse
+  #   ports:
+  #     - "8009:8009"
+  #   environment:
+  #     - SLIDING_SYNC_SERVER_NAME=matrix.cloud.attraktor.org
+  #   volumes:
+  #     - ./sliding_sync_data:/data
 
   pgadmin:
     image: dpage/pgadmin4
