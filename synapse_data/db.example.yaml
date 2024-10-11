@@ -1,0 +1,10 @@
+database:
+  name: psycopg2
+  args:
+    user: your_postgres_user
+    password: your_postgres_password
+    database: your_postgres_db
+    host: postgres
+    port: 5432
+    cp_min: 5
+    cp_max: 10

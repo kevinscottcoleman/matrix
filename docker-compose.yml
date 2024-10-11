@@ -29,6 +29,9 @@ services:
       - postgres
     ports:
       - "8008:8008"
+    command: run \
+      --config-path=/data/homeserver.yaml \
+      --config-path=/data/db.yaml
 
   # sliding_sync:
   #   image: ghcr.io/matrix-org/sliding-sync:latest
