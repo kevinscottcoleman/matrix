@@ -65,32 +65,32 @@ services:
   #   volumes:
   #     - ./sliding_sync_data:/data
 
-  pgadmin:
-    image: dpage/pgadmin4
-    networks:
-      - internal_net
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    ports:
-      - "5050:80"
-    volumes:
-      - ./pgadmin_data:/var/lib/pgadmin
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   networks:
+  #     - internal_net
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+  #     PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+  #   ports:
+  #     - "5050:80"
+  #   volumes:
+  #     - ./pgadmin_data:/var/lib/pgadmin
 
-  backup:
-    image: rclone/rclone:latest
-    networks:
-      - internal_net
-    volumes:
-      - ./backup_data:/backup
-      - ./pg_data:/pg_data:ro
-      - ./synapse_data:/synapse_data:ro
-      - ./rclone:/config/rclone
-    environment:
-      AWS_ACCESS_KEY_ID: your_aws_access_key_id
-      AWS_SECRET_ACCESS_KEY: your_aws_secret_access_key
-    entrypoint: /bin/sh -c
-    command: >
-      apk add --no-cache bash coreutils && \
-      echo '0 2 * * * /backup/backup.sh' | crontab - && \
-      crond -f
+  # backup:
+  #   image: rclone/rclone:latest
+  #   networks:
+  #     - internal_net
+  #   volumes:
+  #     - ./backup_data:/backup
+  #     - ./pg_data:/pg_data:ro
+  #     - ./synapse_data:/synapse_data:ro
+  #     - ./rclone:/config/rclone
+  #   environment:
+  #     AWS_ACCESS_KEY_ID: your_aws_access_key_id
+  #     AWS_SECRET_ACCESS_KEY: your_aws_secret_access_key
+  #   entrypoint: /bin/sh -c
+  #   command: >
+  #     apk add --no-cache bash coreutils && \
+  #     echo '0 2 * * * /backup/backup.sh' | crontab - && \
+  #     crond -f
