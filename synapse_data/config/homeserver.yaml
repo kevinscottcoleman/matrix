@@ -3,6 +3,7 @@ server_name: matrix.cloud.attraktor.org
 listeners:
   - port: 8008
     type: http
+    x_forwarded: true
     resources:
       - names: [client, federation]
 
