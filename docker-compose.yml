@@ -77,6 +77,11 @@ services:
         target: /etc/nginx/conf.d/default.conf
       - source: synapse_client_well_known
         target: /usr/share/nginx/html/.well-known/matrix/client/index.html
+    labels:
+      - "traefik.http.middlewares.synapse-headers.headers.customrequestheaders.X-Forwarded-For=$remote_addr"
+      - "traefik.http.middlewares.synapse-headers.headers.customrequestheaders.X-Forwarded-Proto=$scheme"
+      - "traefik.http.middlewares.synapse-headers.headers.customrequestheaders.Host=$host"
+      - "traefik.http.routers.synapse.middlewares=synapse-headers"
     #ports:
     #  - "8888:80"
 
