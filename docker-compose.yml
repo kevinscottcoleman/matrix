@@ -11,6 +11,8 @@ networks:
 configs:
   nginx_config:
     file: ./nginx_data/nginx.conf
+  synapse_client_well_known:
+    file: ./nginx_data/html/.well-known/matrix/client/index.html
 
 services:
   postgres-synapse:
@@ -73,8 +75,8 @@ services:
     configs:
       - source: nginx_config
         target: /etc/nginx/conf.d/default.conf
-    volumes:
-      - /data/matrix/nginx:/usr/share/nginx/html
+      - source: synapse_client_well_known
+        target: /usr/share/nginx/html/.well-known/matrix/client/index.html
     #ports:
     #  - "8888:80"
 
