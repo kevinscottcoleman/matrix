@@ -8,6 +8,16 @@ networks:
     driver: bridge
     internal: false
 
+configs:
+  synapse_homeserver:
+    file: ./synapse_data/config/homeserver.yaml
+  synapse_db_config:
+    file: ./synapse_data/config/db.yaml
+  synapse_oidc_config:
+    file: ./synapse_data/config/oidc.yaml
+  synapse_email_config:
+    file: ./synapse_data/config/email.yaml
+
 services:
   postgres-synapse:
     image: postgres:15
@@ -33,6 +43,15 @@ services:
 
   synapse:
     image: matrixdotorg/synapse:latest
+    configs:
+      - source: synapse_homeserver
+        target: /data/config/homeserver.yaml
+      - source: synapse_db_config
+        target: /data/config/db.yaml
+      - source: synapse_oidc_config
+        target: /data/config/oidc.yaml
+      - source: synapse_email_config
+        target: /data/config/email.yaml
     networks:
       - internal_net
       - external_net
