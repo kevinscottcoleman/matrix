@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Extract environment variables for database
-DB_USER="${DB_USER:-your_postgres_user}"
-DB_PASSWORD="${DB_PASSWORD:-your_postgres_password}"
-DB_NAME="${DB_NAME:-your_postgres_db}"
-DB_HOST="${DB_HOST:-postgres}"
-DB_PORT="${DB_PORT:-5432}"
-CP_MIN="${CP_MIN:-5}"
-CP_MAX="${CP_MAX:-10}"
+POSTGRES_SYNAPSE_USER="${POSTGRES_SYNAPSE_USER:-your_postgres_user}"
+POSTGRES_SYNAPSE_PASSWORD="${POSTGRES_SYNAPSE_PASSWORD:-your_postgres_password}"
+POSTGRES_SYNAPSE_DB="${POSTGRES_SYNAPSE_DB:-your_postgres_db}"
+POSTGRES_SYNAPSE_HOST="${POSTGRES_SYNAPSE_HOST:-postgres-synapse}"
+POSTGRES_SYNAPSE_POST="${POSTGRES_SYNAPSE_POST:-5432}"
+POSTGRES_SYNAPSE_CP_MIN="${POSTGRES_SYNAPSE_CP_MIN:-5}"
+POSTGRES_SYNAPSE_CP_MAX="${POSTGRES_SYNAPSE_CP_MAX:-10}"
 
 # Extract environment variables for email configuration
 SMTP_HOST="${SMTP_HOST:-your.email.server}"
@@ -30,13 +30,13 @@ OIDC_DISPLAY_NAME_TEMPLATE="${OIDC_DISPLAY_NAME_TEMPLATE:-{{ user.given_name }}}
 OIDC_BACKCHANNEL_LOGOUT="${OIDC_BACKCHANNEL_LOGOUT:-true}"
 
 # Replace placeholders in db.yaml.example and output to db.yaml
-sed -e "s|your_postgres_user|$DB_USER|g" \
-    -e "s|your_postgres_password|$DB_PASSWORD|g" \
-    -e "s|your_postgres_db|$DB_NAME|g" \
-    -e "s|postgres|$DB_HOST|g" \
-    -e "s|5432|$DB_PORT|g" \
-    -e "s|5|$CP_MIN|g" \
-    -e "s|10|$CP_MAX|g" \
+sed -e "s|your_postgres_user|$POSTGRES_SYNAPSE_USER|g" \
+    -e "s|your_postgres_password|$POSTGRES_SYNAPSE_PASSWORD|g" \
+    -e "s|your_postgres_db|$POSTGRES_SYNAPSE_DB|g" \
+    -e "s|postgres|$POSTGRES_SYNAPSE_HOST|g" \
+    -e "s|5432|$POSTGRES_SYNAPSE_POST|g" \
+    -e "s|5|$POSTGRES_SYNAPSE_CP_MIN|g" \
+    -e "s|10|$POSTGRES_SYNAPSE_CP_MAX|g" \
     ./synapse_data/config/db.yaml.example > ./synapse_data/config/db.yaml
 
 echo "db.yaml has been generated with provided environment variables."
