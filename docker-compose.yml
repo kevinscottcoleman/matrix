@@ -44,7 +44,7 @@ services:
     depends_on:
       - postgres-synapse
     labels:
-      - "traefik.http.routers.synapse.rule=Host(`synapse.example.com`)"
+      - "traefik.http.routers.synapse.rule=Host(`${SYNAPSE_HOST}`)"
     #ports:
     #  - "8008:8008"
 
