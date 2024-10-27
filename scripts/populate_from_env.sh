@@ -30,7 +30,7 @@ OIDC_DISPLAY_NAME_TEMPLATE="${OIDC_DISPLAY_NAME_TEMPLATE:-{{ user.given_name }}}
 OIDC_BACKCHANNEL_LOGOUT="${OIDC_BACKCHANNEL_LOGOUT:-true}"
 
 echo "OLD db.yaml:"
-cat ./synapse_data/config/db.yaml
+cat ./synapse_data/config/db.yaml.example
 
 # Replace placeholders in db.yaml.example and output to db.yaml
 sed -e "s|your_postgres_user|$POSTGRES_SYNAPSE_USER|g" \
@@ -47,7 +47,7 @@ echo "NEW db.yaml:"
 cat ./synapse_data/config/db.yaml
 
 echo "OLD email.yaml:"
-cat ./synapse_data/config/email.yaml
+cat ./synapse_data/config/email.yaml.example
 
 # Replace placeholders in email.yaml.example and output to email.yaml
 sed -e "s|your.email.server|$SMTP_HOST|g" \
@@ -64,7 +64,7 @@ echo "NEW email.yaml:"
 cat ./synapse_data/config/email.yaml
 
 echo "OLD oidc.yaml:"
-cat ./synapse_data/config/oidc.yaml
+cat ./synapse_data/config/oidc.yaml.example
 
 # Replace placeholders in oidc.yaml.example and output to oidc.yaml
 sed -e "s|keycloak|$OIDC_IDP_ID|g" \
