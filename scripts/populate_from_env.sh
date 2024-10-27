@@ -14,9 +14,9 @@ SMTP_HOST="${SMTP_HOST:-your.email.server}"
 SMTP_PORT="${SMTP_PORT:-587}"
 SMTP_USER="${SMTP_USER:-your-email@address.com}"
 SMTP_PASS="${SMTP_PASS:-your-email-password}"
-REQUIRE_TRANSPORT_SECURITY="${REQUIRE_TRANSPORT_SECURITY:-true}"
-NOTIF_FROM="${NOTIF_FROM:-your-from-address@address.com}"
-APP_NAME="${APP_NAME:-Attraktor Matrix}"
+SMTP_REQUIRE_TRANSPORT_SECURITY="${SMTP_REQUIRE_TRANSPORT_SECURITY:-true}"
+SMTP_NOTIF_FROM="${SMTP_NOTIF_FROM:-your-from-address@address.com}"
+SMTP_APP_NAME="${SMTP_APP_NAME:-Attraktor Matrix}"
 
 # Extract environment variables for OIDC configuration
 OIDC_IDP_ID="${OIDC_IDP_ID:-keycloak}"
@@ -46,9 +46,9 @@ sed -e "s|your.email.server|$SMTP_HOST|g" \
     -e "s|587|$SMTP_PORT|g" \
     -e "s|your-email@address.com|$SMTP_USER|g" \
     -e "s|your-email-password|$SMTP_PASS|g" \
-    -e "s|true|$REQUIRE_TRANSPORT_SECURITY|g" \
-    -e "s|your-from-address@address.com|$NOTIF_FROM|g" \
-    -e "s|Attraktor Matrix|$APP_NAME|g" \
+    -e "s|true|$SMTP_REQUIRE_TRANSPORT_SECURITY|g" \
+    -e "s|your-from-address@address.com|$SMTP_NOTIF_FROM|g" \
+    -e "s|Attraktor Matrix|$SMTP_APP_NAME|g" \
     ./synapse_data/config/email.yaml.example > ./synapse_data/config/email.yaml
 
 echo "email.yaml has been generated with provided environment variables."
