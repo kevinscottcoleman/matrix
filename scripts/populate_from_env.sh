@@ -5,7 +5,7 @@ POSTGRES_SYNAPSE_USER="${POSTGRES_SYNAPSE_USER:-your_postgres_user}"
 POSTGRES_SYNAPSE_PASSWORD="${POSTGRES_SYNAPSE_PASSWORD:-your_postgres_password}"
 POSTGRES_SYNAPSE_DB="${POSTGRES_SYNAPSE_DB:-your_postgres_db}"
 POSTGRES_SYNAPSE_HOST="${POSTGRES_SYNAPSE_HOST:-postgres-synapse}"
-POSTGRES_SYNAPSE_POST="${POSTGRES_SYNAPSE_POST:-5432}"
+POSTGRES_SYNAPSE_PORT="${POSTGRES_SYNAPSE_PORT:-5432}"
 POSTGRES_SYNAPSE_CP_MIN="${POSTGRES_SYNAPSE_CP_MIN:-5}"
 POSTGRES_SYNAPSE_CP_MAX="${POSTGRES_SYNAPSE_CP_MAX:-10}"
 
@@ -34,7 +34,7 @@ sed -e "s|your_postgres_user|$POSTGRES_SYNAPSE_USER|g" \
     -e "s|your_postgres_password|$POSTGRES_SYNAPSE_PASSWORD|g" \
     -e "s|your_postgres_db|$POSTGRES_SYNAPSE_DB|g" \
     -e "s|postgres|$POSTGRES_SYNAPSE_HOST|g" \
-    -e "s|5432|$POSTGRES_SYNAPSE_POST|g" \
+    -e "s|5432|$POSTGRES_SYNAPSE_PORT|g" \
     -e "s|5|$POSTGRES_SYNAPSE_CP_MIN|g" \
     -e "s|10|$POSTGRES_SYNAPSE_CP_MAX|g" \
     ./synapse_data/config/db.yaml.example > ./synapse_data/config/db.yaml

@@ -17,6 +17,8 @@ configs:
     file: ./synapse_data/config/oidc.yaml
   synapse_email_config:
     file: ./synapse_data/config/email.yaml
+  population_script:
+    file: ./scripts/populate_from_env.sh
 
 services:
   postgres-synapse:
