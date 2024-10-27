@@ -43,8 +43,6 @@ services:
       - /data/matrix/synapse/media:/media_store
     depends_on:
       - postgres-synapse
-    labels:
-      - "traefik.http.routers.synapse.rule=Host(`matrix.apps.attraktor.janjaap.de`)"
     #ports:
     #  - "8008:8008"
 
