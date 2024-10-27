@@ -8,18 +8,6 @@ networks:
     driver: bridge
     internal: false
 
-configs:
-  synapse_homeserver:
-    file: ./synapse_data/config/homeserver.yaml
-  synapse_db_config:
-    file: ./synapse_data/config/db.yaml
-  synapse_oidc_config:
-    file: ./synapse_data/config/oidc.yaml
-  synapse_email_config:
-    file: ./synapse_data/config/email.yaml
-  population_script:
-    file: ./scripts/populate_from_env.sh
-
 services:
   postgres-synapse:
     image: postgres:15
@@ -30,7 +18,7 @@ services:
       POSTGRES_USER: ${POSTGRES_SYNAPSE_USER}
       POSTGRES_PASSWORD: ${POSTGRES_SYNAPSE_PASSWORD}
     volumes:
-      - ./pg_synapse_data:/var/lib/postgresql/data
+      - postgres-synapse:/var/lib/postgresql/data
   
   postgres-sliding-sync:
     image: postgres:15
@@ -41,27 +29,18 @@ services:
       POSTGRES_USER: ${POSTGRES_SLIDING_SYNC_USER}
       POSTGRES_PASSWORD: ${POSTGRES_SLIDING_SYNC_PASSWORD}
     volumes:
-      - ./pg_sliding_sync_data:/var/lib/postgresql/data
+      - postgres-sliding-sync:/var/lib/postgresql/data
 
   synapse:
     image: matrixdotorg/synapse:latest
-    configs:
-      - source: synapse_homeserver
-        target: /data/config/homeserver.yaml
-      - source: synapse_db_config
-        target: /data/config/db.yaml
-      - source: synapse_oidc_config
-        target: /data/config/oidc.yaml
-      - source: synapse_email_config
-        target: /data/config/email.yaml
     networks:
       - internal_net
       - external_net
     environment:
       SYNAPSE_CONFIG_PATH: /data/config
     volumes:
-      - ./synapse_data:/data
-      - ./synapse_media:/media_store
+      - /data/matrix/synapse/data:/data
+      - /data/matrix/synapse/media:/media_store
     depends_on:
       - postgres-synapse
     #ports:
@@ -88,7 +67,7 @@ services:
     networks:
       - external_net
     volumes:
-      - ./nginx_data:/usr/share/nginx/html
+      - /data/matrix/nginx:/usr/share/nginx/html
     #ports:
     #  - "8888:80"
 
