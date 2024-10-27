@@ -43,8 +43,8 @@ services:
       - ./synapse_media:/media_store
     depends_on:
       - postgres-synapse
-    ports:
-      - "8008:8008"
+    #ports:
+    #  - "8008:8008"
 
   sliding-sync:
     image: ghcr.io/matrix-org/sliding-sync:latest
@@ -54,10 +54,10 @@ services:
     depends_on:
       - synapse
       - postgres-sliding-sync
-    ports:
-      - "8009:8009"
+    #ports:
+    #  - "8009:8009"
     environment:
-      SYNCV3_SERVER: https://matrix.cloud.attraktor.org
+      SYNCV3_SERVER: ${SYNAPSE_FQDN}
       SYNCV3_DB: "host=postgres-sliding-sync sslmode=disable port=5432 dbname=${POSTGRES_SLIDING_SYNC_DB} user=${POSTGRES_SLIDING_SYNC_USER} password=${POSTGRES_SLIDING_SYNC_PASSWORD}"
       SYNCV3_SECRET: ${SLIDING_SYNC_SECRET}
       SYNCV3_BINDADDR: 127.0.0.1:8009
@@ -68,8 +68,8 @@ services:
       - external_net
     volumes:
       - ./nginx_data:/usr/share/nginx/html
-    ports:
-      - "8888:80"
+    #ports:
+    #  - "8888:80"
 
   # pgadmin:
   #   image: dpage/pgadmin4
