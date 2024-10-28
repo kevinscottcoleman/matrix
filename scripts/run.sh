@@ -8,4 +8,4 @@ NODE_VERSION=20
 
 # Run the Docker container using the official Node.js image
 #docker run --rm -v "$(pwd)":/usr/src/app -w /usr/src/app node:$NODE_VERSION node ./scripts/index.js
-docker run --rm -v "$(pwd)":/usr/src/app -w /usr/src/app node:$NODE_VERSION ls -la /app
+docker run --rm -v "$(pwd)":/usr/src/app -w /usr/src/app node:$NODE_VERSION ls -la /usr/src/app
