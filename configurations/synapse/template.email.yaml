@@ -1,0 +1,8 @@
+email:
+  smtp_host: "{{SMTP_HOST}}"
+  smtp_port: {{SMTP_PORT}}
+  smtp_user: "{{SMTP_USER}}"
+  smtp_pass: "{{SMTP_PASSWORD}}"
+  require_transport_security: {{SMTP_REQUIRE_TRANSPORT_SECURITY}}
+  notify_from: "{{SMTP_NOTIFY_FROM}}"
+  app_name: "{{SYNAPSE_FRIENDLY_SERVER_NAME}}"

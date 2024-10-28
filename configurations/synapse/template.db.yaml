@@ -1,0 +1,11 @@
+database:
+  name: psycopg2
+  args:
+    user: {{POSTGRES_SYNAPSE_USER}}
+    password: {{POSTGRES_SYNAPSE_PASSWORD}}
+    database: {{POSTGRES_SYNAPSE_DATABASE}}
+    host: {{POSTGRES_SYNAPSE_HOSTNAME}}
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+  allow_unsafe_locale: true

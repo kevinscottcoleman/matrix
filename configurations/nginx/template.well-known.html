@@ -1,0 +1,12 @@
+{
+    "m.homeserver": {
+        "base_url": "{{SYNAPSE_FQDN}}"
+    },
+    "org.matrix.msc3575.proxy": {
+        "url": "{{SYNAPSE_SYNC_FQDN}}"
+    },
+    "org.matrix.msc2965.authentication": {
+        "issuer": "{{AUTHENTICATION_ISSUER}}",
+        "account": "{{SYNAPSE_MAS_FQDN}}/account"
+    }
+}
