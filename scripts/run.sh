@@ -3,6 +3,8 @@
 # Change directory to where the Dockerfile is located
 SCRIPT_DIR=$(dirname "$0")
 
+echo "Current directory: $SCRIPT_DIR"
+
 # Build the Docker image using the Dockerfile in the scripts directory
 docker build -t matrix-env-populater -f "$SCRIPT_DIR/Dockerfile" .
 
