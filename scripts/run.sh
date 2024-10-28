@@ -1,9 +1,10 @@
 #!/bin/bash
 
-echo "Current directory: $SCRIPT_DIR"
+# Echo the current working directory
+echo "Current directory: $(pwd)"
 
-# Build the Docker image using the Dockerfile in the scripts directory
-docker build -t matrix-env-populater -f "./scripts/Dockerfile" .
+# Define the Node.js version you want to use
+NODE_VERSION=20
 
-# Run the Docker container
-docker run --rm -v "$(pwd)":/usr/src/app matrix-env-populater
+# Run the Docker container using the official Node.js image
+docker run --rm -v "$(pwd)":/usr/src/app -w /usr/src/app node:$NODE_VERSION node ./scripts/index.js
