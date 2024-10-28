@@ -1,18 +1,10 @@
-# install nvm dependencies
-apk add -U curl bash ca-certificates openssl ncurses coreutils python3 make gcc g++ libgcc linux-headers grep util-linux binutils findutils
+#!/bin/bash
 
-# Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# Change directory to where the Dockerfile is located
+SCRIPT_DIR=$(dirname "$0")
 
-# Load nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# Build the Docker image using the Dockerfile in the scripts directory
+docker build -t matrix-env-populater -f "$SCRIPT_DIR/Dockerfile" .
 
-# Install node 20
-nvm install v20.15.1
-nvm use v20.15.1
-
-ls -la ./scripts
-
-# run script using node
-node ./scripts/index.js
+# Run the Docker container
+docker run --rm -v "$(pwd)":/usr/src/app matrix-env-populater
