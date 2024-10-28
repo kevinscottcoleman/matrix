@@ -2,6 +2,7 @@
 
 # Echo the current working directory
 echo "Current directory: $(pwd)"
+ls -la .
 
 # Define the Node.js version you want to use
 NODE_VERSION=20
