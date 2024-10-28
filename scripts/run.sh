@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Change directory to where the Dockerfile is located
-SCRIPT_DIR=$(dirname "$0")
+# its the current working dir plus /scripts
+SCRIPT_DIR="$(pwd)/scripts"
 
 echo "Current directory: $SCRIPT_DIR"
 
