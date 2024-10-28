@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # Copy the project files into the container
 COPY . .
 
+RUN ls -la
+
 # Install any needed packages specified in package.json
 # RUN npm install
 
