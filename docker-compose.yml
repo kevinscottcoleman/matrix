@@ -107,7 +107,7 @@ services:
       - external_net
     configs:
       - source: synapse_mas_config
-        target: /data/config/config.yaml
+        target: ./config.yaml
     depends_on:
       - synapse
 
