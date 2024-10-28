@@ -12,7 +12,7 @@ let configContents = readFileSync(
   "utf8"
 );
 
-const SYNAPSE_HOST = getEnv("SYNAPSE_HOST").replace('http://', 'https://').replace('https://', '');
+const SYNAPSE_HOST = getEnv("SYNAPSE_FQDN").replace('http://', 'https://').replace('https://', '');
 
 const replacements = [
   {
