@@ -68,6 +68,14 @@ services:
       SYNCV3_SECRET: ${SLIDING_SYNC_SECRET}
       SYNCV3_BINDADDR: 127.0.0.1:8009
 
+  synapse-authentication-service:
+    image: ghcr.io/element-hq/matrix-authentication-service:latest
+    networks:
+      - internal_net
+      - external_net
+    depends_on:
+      - synapse
+
   nginx:
     image: nginx:latest
     networks:

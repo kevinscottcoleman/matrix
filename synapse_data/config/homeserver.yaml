@@ -1,4 +1,4 @@
-server_name: matrix.cloud.attraktor.org
+server_name: janjaap.de
 
 listeners:
   - port: 8008
