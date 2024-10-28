@@ -1,3 +1,5 @@
-curl -fsSL https://bun.sh/install | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install v20.15.1
+nvm use v20.15.1
 ls -la ./scripts
-~/.bun/bin/bun ./scripts/index.ts
+npx ts-node ./scripts/index.ts
