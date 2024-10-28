@@ -17,9 +17,9 @@ const SYNAPSE_HOST = getEnv("SYNAPSE_FQDN").replace('http://', 'https://').repla
 const replacements = [
   {
     search: "uri: postgresql://",
-    replace: `uri: postgresql://${getEnv("POSTGRES_SYNAPSE_USER")}:${getEnv(
-      "POSTGRES_SYNAPSE_PASSWORD"
-    )}@postgres-synapse:5432/${getEnv("POSTGRES_SYNAPSE_DB")}`,
+    replace: `uri: postgresql://${getEnv("POSTGRES_SYNAPSE_MAS_USER")}:${getEnv(
+      "POSTGRES_SYNAPSE_MAS_PASSWORD"
+    )}@postgres-synapse-mas:5432/${getEnv("POSTGRES_SYNAPSE_MAS_DB")}`,
   },
   {
     search: `from: '"Authentication Service" <root@localhost>'`,
