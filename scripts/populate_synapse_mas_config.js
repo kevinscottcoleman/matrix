@@ -41,7 +41,7 @@ const replacements = [
   },
 ];
 
-export function populateSynapseMasConfig() {
+function populateSynapseMasConfig() {
   replacements.forEach((replacement) => {
     configContents = configContents
       .split(replacement.search)
@@ -50,3 +50,7 @@ export function populateSynapseMasConfig() {
 
   writeFileSync("./configurations/synapse-mas/config.yaml", configContents);
 }
+
+module.exports = {
+  populateSynapseMasConfig,
+};

@@ -62,8 +62,12 @@ function populateFile(templateFile, outFile) {
   fs.writeFileSync(outFile, fileContents);
 }
 
-export function populateConfigsFromEnv() {
+function populateConfigsFromEnv() {
   for (const template of templates) {
     populateFile(template.templateFile, template.outFile);
   }
 }
+
+module.exports = {
+  populateConfigsFromEnv,
+};
