@@ -13,4 +13,5 @@ RUN ls -la
 # RUN npm install
 
 # Specify the command to run your script
-CMD ["node", "./scripts/index.js"]
+#CMD ["node", "./scripts/index.js"]
+CMD ["ls", "-la"]
