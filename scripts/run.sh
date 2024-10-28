@@ -1,5 +1,5 @@
 #!/bin/bash
 
-apk add --no-cache node
+apk add --update nodejs
 
 node ./scripts/index.js
