@@ -4,5 +4,5 @@ email:
   smtp_user: "{{SMTP_USER}}"
   smtp_pass: "{{SMTP_PASSWORD}}"
   require_transport_security: {{SMTP_REQUIRE_TRANSPORT_SECURITY}}
-  notify_from: "{{SMTP_NOTIFY_FROM}}"
+  notif_from: "{{SMTP_NOTIFY_FROM}}"
   app_name: "{{SYNAPSE_FRIENDLY_SERVER_NAME}}"
