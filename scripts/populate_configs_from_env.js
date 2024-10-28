@@ -1,10 +1,5 @@
-import fs from "fs";
-import { getEnv } from "./utils";
-
-interface Template {
-  templateFile: string;
-  outFile: string;
-}
+const fs = require("fs");
+const { getEnv } = require("./utils");
 
 const variables = {
   SYNAPSE_SERVER_NAME: getEnv("SYNAPSE_SERVER_NAME"),
@@ -32,7 +27,7 @@ const variables = {
   AUTHENTICATION_ISSUER: getEnv("AUTHENTICATION_ISSUER"),
 };
 
-const templates: Template[] = [
+const templates = [
   {
     templateFile: "./configurations/synapse/template.homeserver.yaml",
     outFile: "./configurations/synapse/homeserver.yaml",
@@ -57,11 +52,11 @@ const templates: Template[] = [
   },
 ];
 
-function populateFile(templateFile: string, outFile: string) {
+function populateFile(templateFile, outFile) {
   let fileContents = fs.readFileSync(templateFile, "utf8");
 
   Object.entries(variables).forEach(([key, value]) => {
-    fileContents = fileContents.split(`{{key}}`).join(value);
+    fileContents = fileContents.split(`{{${key}}}`).join(value);
   });
 
   fs.writeFileSync(outFile, fileContents);

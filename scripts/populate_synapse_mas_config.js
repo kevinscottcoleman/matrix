@@ -1,6 +1,6 @@
-import { execSync } from "child_process";
-import { readFileSync, writeFileSync } from "fs";
-import { getEnv } from "./utils";
+const { execSync } = require("child_process");
+const { readFileSync, writeFileSync } = require("fs");
+const { getEnv } = require("./utils");
 
 const configGenerationCommand =
   "docker run ghcr.io/element-hq/matrix-authentication-service config generate > ./configurations/synapse-mas/template.config.yaml";

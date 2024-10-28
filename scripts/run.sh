@@ -1,16 +1,15 @@
-# Install deno
-curl -fsSL https://deno.land/install.sh | sh
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Install node 20
+nvm install v20.15.1
+nvm use v20.15.1
 
 ls -la ./scripts
 
-# echo current working directory
-pwd
-
-# ls -la on output of pwd
-ls -la
-
-# run script (pwd + scripts/index.ts) using deno
-export SCRIPT_PATH=$(pwd)/scripts/index.ts
-echo "Running script: $SCRIPT_PATH"
-echo $SCRIPT_PATH
-/root/.deno/bin/deno --allow-read --allow-write --allow-env --allow-run --allow-hrtime --no-check $SCRIPT_PATH
+# run script using node
+node ./scripts/index.js
