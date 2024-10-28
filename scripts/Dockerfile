@@ -5,13 +5,13 @@ FROM node:20
 WORKDIR /usr/src/app
 
 # Copy the project files into the container
-COPY . .
+#COPY . .
 
-RUN ls -la
+#RUN ls -la
 
 # Install any needed packages specified in package.json
 # RUN npm install
 
 # Specify the command to run your script
 #CMD ["node", "./scripts/index.js"]
-CMD ["ls", "-la"]
+CMD ["node", "/usr/src/app/scripts/index.js"]
