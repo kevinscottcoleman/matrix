@@ -12,6 +12,8 @@ let configContents = readFileSync(
   "utf8"
 );
 
+const SYNAPSE_HOST = getEnv("SYNAPSE_HOST").replace('http://', 'https://').replace('https://', '');
+
 const replacements = [
   {
     search: "uri: postgresql://",
@@ -33,7 +35,7 @@ const replacements = [
   },
   {
     search: "homeserver: localhost:8008",
-    replace: `homeserver: ${getEnv("SYNAPSE_HOST")}`,
+    replace: `homeserver: ${SYNAPSE_HOST}`,
   },
   {
     search: "endpoint: http://localhost:8008/",
