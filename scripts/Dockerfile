@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install any needed packages specified in package.json
-RUN npm install
+# RUN npm install
 
 # Specify the command to run your script
 CMD ["node", "scripts/index.js"]
