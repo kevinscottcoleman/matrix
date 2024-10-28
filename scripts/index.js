@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 function loadEnvFileIntoEnvVars() {
-    const envFilePath = path.join(__dirname, ".env");
+    const envFilePath = path.join(__dirname, "../.env");
     if (!fs.existsSync(envFilePath)) {
         throw new Error(`.env file not found: ${envFilePath}`);
     }
