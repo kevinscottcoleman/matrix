@@ -3,8 +3,8 @@ database:
   args:
     user: {{POSTGRES_SYNAPSE_USER}}
     password: {{POSTGRES_SYNAPSE_PASSWORD}}
-    database: {{POSTGRES_SYNAPSE_DATABASE}}
-    host: {{POSTGRES_SYNAPSE_HOSTNAME}}
+    database: {{POSTGRES_SYNAPSE_DB}}
+    host: {{POSTGRES_SYNAPSE_HOST}}
     port: 5432
     cp_min: 5
     cp_max: 10
