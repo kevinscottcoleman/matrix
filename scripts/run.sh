@@ -1,3 +1,3 @@
 curl -fsSL https://bun.sh/install | bash
-ls -la .
+ls -la ./scripts
 ~/.bun/bin/bun ./scripts/index.ts
