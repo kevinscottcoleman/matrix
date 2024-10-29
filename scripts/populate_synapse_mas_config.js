@@ -76,8 +76,8 @@ const replacements = [
     useRegex: true,
   },
   {
-    search: "{{SYNAPSE_MAS_SECRET}}",
-    replace: getEnv("SYNAPSE_MAS_SECRET"),
+    search: "SYNAPSE_MAS_SECRET",
+    isEnv: true,
   },
   {
     search: "public_base: http://[::]:8080/",
@@ -87,6 +87,18 @@ const replacements = [
     search: "issuer: http://[::]:8080/",
     replace: `issuer: ${getEnv("SYNAPSE_MAS_FQDN")}`,
   },
+  {
+    search: "KEYCLOAK_ISSUER_FQDN",
+    isEnv: true,
+  },
+  {
+    search: "KEYCLOAK_CLIENT_ID",
+    isEnv: true,
+  },
+  {
+    search: "KEYCLOAK_CLIENT_SECRET",
+    isEnv: true,
+  },
 ];
 
 function replaceByRegex(text, searchRegex, replaceFunction) {
@@ -95,7 +107,11 @@ function replaceByRegex(text, searchRegex, replaceFunction) {
 
 function populateSynapseMasConfig() {
   replacements.forEach((replacement) => {
-    if (replacement.useRegex) {
+    if (replacement.isEnv) {
+      configContents = configContents
+        .split(`{{${replacement.search}}}`)
+        .join(getEnv(replacement.search));
+    } else if (replacement.useRegex) {
       configContents = replaceByRegex(
         configContents,
         replacement.search,
