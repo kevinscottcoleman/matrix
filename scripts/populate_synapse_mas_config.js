@@ -1,10 +1,15 @@
 const { execSync } = require("child_process");
-const { readFileSync, writeFileSync } = require("fs");
+const { readFileSync, writeFileSync, unlinkSync, renameSync } = require("fs");
 const { getEnv } = require("./utils");
 
 const configGenerationCommand =
   "docker run ghcr.io/element-hq/matrix-authentication-service config generate > ./configurations/synapse-mas/template.config.yaml";
 
+unlinkSync("./configurations/synapse-mas/template.config.yaml.bak");
+renameSync(
+  "./configurations/synapse-mas/template.config.yaml",
+  "./configurations/synapse-mas/template.config.yaml.bak"
+);
 execSync(configGenerationCommand);
 
 let configContents = readFileSync(
@@ -65,7 +70,7 @@ const replacements = [
   },
   {
     search: "public_base: http://[::]:8080/",
-    replace: `public_base: ${getEnv(SYNAPSE_MAS_FQDN)}`, 
+    replace: `public_base: ${getEnv(SYNAPSE_MAS_FQDN)}`,
   },
   {
     search: "issuer: http://[::]:8080/",
