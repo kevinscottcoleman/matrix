@@ -102,6 +102,14 @@ const replacements = [
   {
     search: 'KEYCLOAK_REALM_IDENTIFIER',
     isEnv: true,
+  },
+  {
+    search: `
+passwords:
+  enabled: true`,
+    replace: `
+passwords:
+  enabled: false`,
   }
 ];
 
