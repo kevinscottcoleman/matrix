@@ -99,6 +99,10 @@ const replacements = [
     search: "KEYCLOAK_CLIENT_SECRET",
     isEnv: true,
   },
+  {
+    search: 'KEYCLOAK_REALM_IDENTIFIER',
+    isEnv: true,
+  }
 ];
 
 function replaceByRegex(text, searchRegex, replaceFunction) {
