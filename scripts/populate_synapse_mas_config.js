@@ -13,8 +13,8 @@ let configContents = readFileSync(
 );
 
 configContents += `
-${readFileSync('./configurations/synapse-mas/clients.appendix.yaml', 'utf8')}
-${readFileSync('./configurations/synapse-mas/keycloak.appendix.yaml', 'utf8')}`;
+${readFileSync("./configurations/synapse-mas/clients.appendix.yaml", "utf8")}
+${readFileSync("./configurations/synapse-mas/keycloak.appendix.yaml", "utf8")}`;
 
 const SYNAPSE_HOST = getEnv("SYNAPSE_FQDN")
   .replace("http://", "https://")
@@ -60,9 +60,17 @@ const replacements = [
     useRegex: true,
   },
   {
-    search: '{{SYNAPSE_MAS_SECRET}}',
+    search: "{{SYNAPSE_MAS_SECRET}}",
     replace: getEnv("SYNAPSE_MAS_SECRET"),
-  }
+  },
+  {
+    search: "public_base: http://[::]:8080/",
+    replace: "public_base: {{SYNAPSE_MAS_FQDN}}",
+  },
+  {
+    search: "issuer: http://[::]:8080/",
+    replace: "issuer: {{SYNAPSE_MAS_FQDN}}",
+  },
 ];
 
 function replaceByRegex(text, searchRegex, replaceFunction) {
