@@ -110,6 +110,10 @@ passwords:
     replace: `
 passwords:
   enabled: false`,
+  },
+  {
+    search: "KEYCLOAK_UPSTREAM_OAUTH_PROVIDER_ID",
+    isEnv: true,
   }
 ];
 

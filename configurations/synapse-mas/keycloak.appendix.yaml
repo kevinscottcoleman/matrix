@@ -1,6 +1,6 @@
 upstream_oauth2:
   providers:
-    - id: "01H8PKNWKKRPCBW4YGH1RWV279"
+    - id: "{{KEYCLOAK_UPSTREAM_OAUTH_PROVIDER_ID}}"
       issuer: "{{KEYCLOAK_FQDN}}/realms/{{KEYCLOAK_REALM_IDENTIFIER}}"
       token_endpoint_auth_method: client_secret_basic
       client_id: "{{KEYCLOAK_CLIENT_ID}}"
