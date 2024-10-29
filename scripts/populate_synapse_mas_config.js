@@ -65,11 +65,11 @@ const replacements = [
   },
   {
     search: "public_base: http://[::]:8080/",
-    replace: "public_base: {{SYNAPSE_MAS_FQDN}}",
+    replace: `public_base: ${getEnv(SYNAPSE_MAS_FQDN)}`, 
   },
   {
     search: "issuer: http://[::]:8080/",
-    replace: "issuer: {{SYNAPSE_MAS_FQDN}}",
+    replace: `issuer: ${getEnv(SYNAPSE_MAS_FQDN)}`,
   },
 ];
 
