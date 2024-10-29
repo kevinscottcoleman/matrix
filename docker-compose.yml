@@ -110,6 +110,7 @@ services:
         target: ./config.yaml
     depends_on:
       - synapse
+      - postgres-synapse-mas
 
   nginx:
     image: nginx:latest
