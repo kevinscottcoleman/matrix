@@ -1,15 +1,26 @@
 const { execSync } = require("child_process");
-const { readFileSync, writeFileSync, unlinkSync, renameSync } = require("fs");
+const {
+  readFileSync,
+  writeFileSync,
+  unlinkSync,
+  renameSync,
+  existsSync,
+} = require("fs");
 const { getEnv } = require("./utils");
 
 const configGenerationCommand =
   "docker run ghcr.io/element-hq/matrix-authentication-service config generate > ./configurations/synapse-mas/template.config.yaml";
 
-unlinkSync("./configurations/synapse-mas/template.config.yaml.bak");
-renameSync(
-  "./configurations/synapse-mas/template.config.yaml",
-  "./configurations/synapse-mas/template.config.yaml.bak"
-);
+if (existsSync("./configurations/synapse-mas/template.config.yaml.bak")) {
+  unlinkSync("./configurations/synapse-mas/template.config.yaml.bak");
+}
+
+if (existsSync("./configurations/synapse-mas/template.config.yaml")) {
+  renameSync(
+    "./configurations/synapse-mas/template.config.yaml",
+    "./configurations/synapse-mas/template.config.yaml.bak"
+  );
+}
 execSync(configGenerationCommand);
 
 let configContents = readFileSync(
