@@ -12,6 +12,10 @@ let configContents = readFileSync(
   "utf8"
 );
 
+configContents += `
+${readFileSync('./configurations/synapse-mas/clients.appendix.yaml', 'utf8')}
+${readFileSync('./configurations/synapse-mas/keycloak.appendix.yaml', 'utf8')}`;
+
 const SYNAPSE_HOST = getEnv("SYNAPSE_FQDN")
   .replace("http://", "https://")
   .replace("https://", "");
@@ -55,6 +59,10 @@ const replacements = [
     },
     useRegex: true,
   },
+  {
+    search: '{{SYNAPSE_MAS_SECRET}}',
+    replace: getEnv("SYNAPSE_MAS_SECRET"),
+  }
 ];
 
 function replaceByRegex(text, searchRegex, replaceFunction) {
@@ -75,12 +83,6 @@ function populateSynapseMasConfig() {
         .join(replacement.replace);
     }
   });
-
-  configContents += `
-clients:
-  - client_id: 0000000000000000000SYNAPSE
-    client_auth_method: client_secret_basic
-    client_secret: "${getEnv("SYNAPSE_MAS_SECRET")}"`;
 
   writeFileSync("./configurations/synapse-mas/config.yaml", configContents);
 }

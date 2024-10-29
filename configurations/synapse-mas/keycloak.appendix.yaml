@@ -1,0 +1,19 @@
+upstream_oauth2:
+  providers:
+    - id: "01H8PKNWKKRPCBW4YGH1RWV279"
+      issuer: "{{KEYCLOAK_ISSUER_FQDN}}/realms/<realm>"
+      token_endpoint_auth_method: client_secret_basic
+      client_id: "{{KEYCLOAK_CLIENT_ID}}"
+      client_secret: "{{KEYCLOAK_CLIENT_SECRET}}"
+      scope: "openid profile email"
+      claims_imports:
+        localpart:
+          action: require
+          template: "{{ user.preferred_username }}"
+        displayname:
+          action: suggest
+          template: "{{ user.name }}"
+        email:
+          action: suggest
+          template: "{{ user.email }}"
+          set_email_verification: always

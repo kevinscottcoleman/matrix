@@ -1,9 +1,9 @@
 #oidc_providers:
 #  - idp_id: keycloak
 #    idp_name: "{{SYNAPSE_FRIENDLY_SERVER_NAME}}"
-#    issuer: "{{OIDC_ISSUER_FQDN}}"
-#    client_id: "{{OIDC_CLIENT_ID}}"
-#    client_secret: "{{OIDC_CLIENT_SECRET}}"
+#    issuer: "{{KEYCLOAK_FQDN}}/auth/realms/{{KEYCLOAK_REALM_IDENTIFIER}}"
+#    client_id: "{{KEYCLOAK_CLIENT_ID}}"
+#    client_secret: "{{KEYCLOAK_CLIENT_SECRET}}"
 #    scopes: ["openid", "profile"]
 #    user_mapping_provider:
 #      config:
