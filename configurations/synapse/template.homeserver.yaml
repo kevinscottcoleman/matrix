@@ -31,7 +31,8 @@ experimental_features:
     enabled: true
 
     # Synapse will call `{issuer}/.well-known/openid-configuration` to get the OIDC configuration
-    issuer: {{SYNAPSE_MAS_FQDN}}
+    #issuer: {{SYNAPSE_MAS_FQDN}}
+    issuer: http://synapse-mass-authentication-service:8080
 
     # Matches the `client_id` in the auth service config
     client_id: 0000000000000000000SYNAPSE
