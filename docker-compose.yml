@@ -64,6 +64,7 @@ services:
       - /data/matrix/synapse/media:/media_store
     depends_on:
       - postgres-synapse
+      - synapse
     #ports:
     #  - "8008:8008"
 
@@ -86,7 +87,6 @@ services:
       - source: synapse_mas_config
         target: ./config.yaml
     depends_on:
-      - synapse
       - postgres-synapse-mas
 
   nginx:
