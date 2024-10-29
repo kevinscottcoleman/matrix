@@ -61,7 +61,7 @@ const replacements = [
   },
   {
     search: "homeserver: localhost:8008",
-    replace: `homeserver: ${SYNAPSE_HOST}`,
+    replace: `homeserver: ${getEnv("SYNAPSE_SERVER_NAME")}`,
   },
   {
     search: "endpoint: http://localhost:8008/",
@@ -100,7 +100,7 @@ const replacements = [
     isEnv: true,
   },
   {
-    search: 'KEYCLOAK_REALM_IDENTIFIER',
+    search: "KEYCLOAK_REALM_IDENTIFIER",
     isEnv: true,
   },
   {
@@ -114,7 +114,7 @@ passwords:
   {
     search: "KEYCLOAK_UPSTREAM_OAUTH_PROVIDER_ID",
     isEnv: true,
-  }
+  },
 ];
 
 function replaceByRegex(text, searchRegex, replaceFunction) {
