@@ -44,4 +44,4 @@ experimental_features:
     admin_token: "{{SYNAPSE_API_ADMIN_TOKEN}}"
 
     # URL to advertise to clients where users can self-manage their account
-    account_management_url: "{{KEYCLOAK_FQDN}}/auth/realms/{{KEYCLOAK_REALM_IDENTIFIER}}/account"
+    account_management_url: "{{KEYCLOAK_FQDN}}/realms/{{KEYCLOAK_REALM_IDENTIFIER}}/account"
