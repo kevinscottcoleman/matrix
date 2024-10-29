@@ -65,7 +65,7 @@ const replacements = [
   },
   {
     search: "endpoint: http://localhost:8008/",
-    replace: `endpoint: http://${getEnv("SYNAPSE_FQDN")}/`,
+    replace: `endpoint: ${getEnv("SYNAPSE_FQDN")}`,
   },
   {
     search: /matrix:\n  homeserver: (.*)\n.*secret: (.*)/,
