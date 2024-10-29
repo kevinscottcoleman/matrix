@@ -88,7 +88,7 @@ const replacements = [
     replace: `issuer: ${getEnv("SYNAPSE_MAS_FQDN")}`,
   },
   {
-    search: "KEYCLOAK_ISSUER_FQDN",
+    search: "KEYCLOAK_FQDN",
     isEnv: true,
   },
   {
