@@ -25,3 +25,23 @@ password_config:
   enabled: false
 
 admin_contact: 'mailto:{{ADMIN_EMAIL}}'
+
+experimental_features:
+  msc3861:
+    enabled: true
+
+    # Synapse will call `{issuer}/.well-known/openid-configuration` to get the OIDC configuration
+    issuer: {{SYNAPSE_MAS_FQDN}}
+
+    # Matches the `client_id` in the auth service config
+    client_id: 0000000000000000000SYNAPSE
+    # Matches the `client_auth_method` in the auth service config
+    client_auth_method: client_secret_basic
+    # Matches the `client_secret` in the auth service config
+    client_secret: "{{SYNAPSE_MAS_SECRET}}"
+
+    # Matches the `matrix.secret` in the auth service config
+    admin_token: "{{SYNAPSE_API_ADMIN_TOKEN}}"
+
+    # URL to advertise to clients where users can self-manage their account
+    account_management_url: "{{OIDC_ACCOUNT_MANAGEMENT_URL}}"
