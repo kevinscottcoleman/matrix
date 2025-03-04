@@ -69,8 +69,8 @@ services:
     depends_on:
       - postgres-synapse
       - synapse-mass-authentication-service
-    #ports:
-    #  - "8008:8008"
+    ports:
+      - "8008:8008"
 
   sliding-sync:
     image: ghcr.io/matrix-org/sliding-sync:latest
@@ -78,8 +78,8 @@ services:
     depends_on:
       - synapse
       - postgres-sliding-sync
-    #ports:
-    #  - "8009:8009"
+    ports:
+      - "8009:8009"
     environment:
       SYNCV3_SERVER: ${SYNAPSE_FQDN}
       SYNCV3_DB: "host=postgres-sliding-sync sslmode=disable port=5432 dbname=${POSTGRES_SLIDING_SYNC_DB} user=${POSTGRES_SLIDING_SYNC_USER} password=${POSTGRES_SLIDING_SYNC_PASSWORD}"
@@ -103,8 +103,8 @@ services:
         target: /etc/nginx/conf.d/default.conf
       - source: nginx_synapse_client_well_known
         target: /usr/share/nginx/html/.well-known/matrix/client/index.html
-    #ports:
-    #  - "8888:80"
+    ports:
+      - "8888:80"
 
   # pgadmin:
   #   image: dpage/pgadmin4
