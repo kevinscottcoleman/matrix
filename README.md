@@ -42,7 +42,7 @@ Define the domain mappings for your Matrix server components:
 
 - **Synapse**: `synapse.matrix.your-domain.com` (Port: 8008)
 - **Sliding Sync Server**: `sync.matrix.your-domain.com` (Port: 8009)
-- **MAS**: `mas.matrix.your-domain.com` (Port: 8080)
+- **MAS**: `mas.synapse.your-domain.com` (Port: 8080)
 - **Nginx (Main Entry)**: `matrix.your-domain.com` (Port: 80)
 
 📝 **Tip**: Ensure nginx is the primary entry point for clients.
